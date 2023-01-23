@@ -8,7 +8,7 @@ export function CalculatorConteiner(){
     const [lastresult, setLastresult] = useState("");
     function lastNumber(input){
         const index = Array.from(input).findIndex(index => {
-            if(index === "*" || index == "/" || index === "+" || index === "-")
+            if(index === "*" || index === "/" || index === "+" || index === "-")
             return index
         })
         return index
