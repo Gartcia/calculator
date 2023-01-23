@@ -4,19 +4,62 @@ import Button from './Buttons'
 export function CalculatorConteiner(){
     const [input, setInput] = useState("")
     const [output, setOutput] = useState(0)
+    const [point, setPoint] = useState(true);
+    const [lastresult, setLastresult] = useState("");
+    function lastNumber(input){
+        const index = Array.from(input).findIndex(index => {
+            if(index === "*" || index == "/" || index === "+" || index === "-")
+            return index
+        })
+        return index
+    }
     function handleClick(id){
         switch(id){
             case "AC":
                 setInput("");
                 setOutput(0);
+                setPoint(true)
+                setLastresult("")
                 break;
             case "=":
+                setInput("");
                 setOutput(eval(input));
-                setInput(eval(input));
+                setPoint(true)
+                setLastresult(eval(input).toString())
                 break;
             default:
-                setInput(input + id);
-                setOutput(id)
+                if(lastresult !== "" && (id==="+" || id==="/" || id==="*" || id==="-")){
+                        setInput(lastresult + id)
+                        setOutput(lastresult + id)
+                        setLastresult("");
+                } else if((input[input.length-1]==="+" ||
+                  input[input.length-1]==="*" ||
+                  input[input.length-1]==="/" ||
+                  input[input.length-1]==="-") && 
+                  (id==="+" || id==="/" || id==="*")
+                  ){
+                    const index = lastNumber(input)
+                    setInput(input.slice(0,index) + id)
+                    setOutput(input.slice(0,index) + id)
+                }else if(input === "0" && id==="0"){
+                  setInput(input);
+                  setOutput(input);
+                } else if(id==="."){
+                  if(!point){
+                    setInput(input);
+                    setOutput(input);
+                  } else {
+                    setInput(input + id);
+                    setOutput(input + id);
+                    setPoint(false);
+                  }
+                } else {
+                   setInput(input + id);
+                   setOutput(input + id);
+                }
+                if(id === "+" | id === "/" | id === "*" | id === "-"){
+                   setPoint(true)
+                }
         }
     }
     return(
