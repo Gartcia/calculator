@@ -63,7 +63,7 @@ export function CalculatorConteiner(){
         }
     }
     return(
-    <div className="container p-0 shadow border-top border-bottom border-dark-subtle border-5" style={{width: 400}}>
+    <div className="container p-0 shadow border-top border-bottom border-dark-subtle border-5"style={{maxWidth: 400}}>
         <div className="row w-100 m-0">
             <div className="col-12 bg-dark d-flex flex-column justify-content-center align-items-end text-light text-end" id="display" style={{width:"100%", height: 70}}>{input}<br></br><span className='fs-2'>{output}</span></div>
         </div>
