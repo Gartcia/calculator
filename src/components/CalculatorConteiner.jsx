@@ -28,7 +28,7 @@ export function CalculatorConteiner(){
                 setLastresult(eval(input).toString())
                 break;
             default:
-                if(lastresult !== "" && (id==="+" || id==="/" || id==="*" || id==="-")){
+                if(lastresult !== "" && (id==="+" || id==="/" || id==="*" || id==="-") && input === ""){
                         setInput(lastresult + id)
                         setOutput(lastresult + id)
                         setLastresult("");
